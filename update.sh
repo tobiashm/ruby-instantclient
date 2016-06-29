@@ -1,0 +1,13 @@
+#/bin/bash
+set -e
+oracle_versions=( vendor/* )
+ruby_versions=( 2.*/ )
+for ruby_version in "${ruby_versions[@]%/}"; do
+  for oracle_version in "${oracle_versions[@]#vendor/}"; do
+    sedStr="
+      s!%%ORACLE_VERSION%%!$oracle_version!g;
+      s!%%RUBY_VERSION%%!$ruby_version!g;
+    "
+    sed -e "$sedStr" "Dockerfile.template" > "$ruby_version/Dockerfile"
+  done
+done
