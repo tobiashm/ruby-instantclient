@@ -5,7 +5,11 @@ ENV ORACLE_HOME "/usr/lib/oracle/%%ORACLE_VERSION%%/client64"
 ENV LD_LIBRARY_PATH "$ORACLE_HOME/lib"
 ENV PATH "$PATH:$ORACLE_HOME/bin"
 
-COPY vendor/%%ORACLE_VERSION%%/*.rpm /tmp/
+COPY \
+  vendor/%%ORACLE_VERSION%%/oracle-instantclient%%ORACLE_VERSION%%-%%PACKAGE%%-*.rpm \
+  vendor/%%ORACLE_VERSION%%/oracle-instantclient%%ORACLE_VERSION%%-devel-*.rpm \
+  vendor/%%ORACLE_VERSION%%/oracle-instantclient%%ORACLE_VERSION%%-sqlplus-*.rpm \
+  /tmp/
 
 RUN set -ex && \
   BUILD_PACKAGES='alien build-essential libaio-dev' && \
