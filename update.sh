@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 set -e
 oracle_versions=( vendor/* )
 while read ruby_version; do
