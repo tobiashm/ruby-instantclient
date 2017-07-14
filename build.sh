@@ -8,6 +8,11 @@ while read ruby_version; do
       tag="tobiashm/ruby-instantclient:$version-$variant"
       docker build . -f "Dockerfile-$version-$variant" -t "$tag"
       if [ "$PUSH" ]; then docker push "$tag"; fi
+      if [ "$variant" == "basiclite" ]; then
+        default_tag="${tag%-$variant}"
+        docker tag "$tag" "$default_tag"
+        if [ "$PUSH" ]; then docker push "$default_tag"; fi
+      fi
     done
   done
 done < ruby-versions
