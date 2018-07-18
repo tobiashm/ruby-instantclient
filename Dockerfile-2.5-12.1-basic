@@ -1,0 +1,22 @@
+FROM ruby:2.5-slim
+MAINTAINER tobias.michaelsen@karnovgroup.com
+
+ENV ORACLE_HOME "/usr/lib/oracle/12.1/client64"
+ENV LD_LIBRARY_PATH "$ORACLE_HOME/lib"
+ENV PATH "$PATH:$ORACLE_HOME/bin"
+
+COPY \
+  vendor/12.1/oracle-instantclient12.1-basic-*.rpm \
+  vendor/12.1/oracle-instantclient12.1-devel-*.rpm \
+  vendor/12.1/oracle-instantclient12.1-sqlplus-*.rpm \
+  /tmp/
+
+RUN set -ex && \
+  BUILD_PACKAGES='alien build-essential libaio-dev' && \
+  apt-get update && \
+  apt-get install -y --no-install-recommends $BUILD_PACKAGES libaio1 && \
+  for f in /tmp/oracle-*.rpm; do alien -i $f; done && \
+  apt-get purge -y --auto-remove $BUILD_PACKAGES && \
+  rm -rf /tmp/*.rpm
+
+CMD ["sh"]
