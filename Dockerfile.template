@@ -1,5 +1,5 @@
 FROM ruby:%%RUBY_VERSION%%-slim
-MAINTAINER tobias.michaelsen@karnovgroup.com
+LABEL maintainer="tobias.michaelsen@gmail.com"
 
 ENV ORACLE_HOME "/usr/lib/oracle/%%ORACLE_VERSION%%/client64"
 ENV LD_LIBRARY_PATH "$ORACLE_HOME/lib"
