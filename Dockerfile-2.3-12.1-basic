@@ -17,6 +17,8 @@ RUN set -ex && \
   apt-get install -y --no-install-recommends $BUILD_PACKAGES libaio1 && \
   for f in /tmp/oracle-*.rpm; do alien -i $f; done && \
   apt-get purge -y --auto-remove $BUILD_PACKAGES && \
-  rm -rf /tmp/*.rpm
+  rm -rf /tmp/*.rpm && \
+  echo /usr/lib/oracle/12.1/client64/lib > /etc/ld.so.conf.d/oracle-instantclient12.1.conf && \
+  ldconfig
 
 CMD ["sh"]
