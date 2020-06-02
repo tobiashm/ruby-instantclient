@@ -11,8 +11,8 @@ while read -r ruby_version; do
     echo -n ", \`$ruby_version-$oracle_version\`"
     echo ""
     echo -n "- "
-    echo -n "\`$ruby_version-$oracle_version-basic\`"
-    echo -n ", \`$actual_ruby_version-$oracle_version-basic\`"
+    echo -n "\`$actual_ruby_version-$oracle_version-basic\`"
+    echo -n ", \`$ruby_version-$oracle_version-basic\`"
     echo ""
   done
   echo ""
