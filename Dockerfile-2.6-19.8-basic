@@ -1,14 +1,14 @@
-FROM ruby:2.5-slim
+FROM ruby:2.6-slim
 LABEL maintainer="tobias.michaelsen@gmail.com"
 
-ENV ORACLE_HOME "/usr/lib/oracle/19.6/client64"
+ENV ORACLE_HOME "/usr/lib/oracle/19.8/client64"
 ENV LD_LIBRARY_PATH "$ORACLE_HOME/lib"
 ENV PATH "$PATH:$ORACLE_HOME/bin"
 
 COPY \
-  vendor/19.6/oracle-instantclient19.6-basic-*.rpm \
-  vendor/19.6/oracle-instantclient19.6-devel-*.rpm \
-  vendor/19.6/oracle-instantclient19.6-sqlplus-*.rpm \
+  vendor/19.8/oracle-instantclient19.8-basic-*.rpm \
+  vendor/19.8/oracle-instantclient19.8-devel-*.rpm \
+  vendor/19.8/oracle-instantclient19.8-sqlplus-*.rpm \
   /tmp/
 
 RUN set -ex && \
@@ -18,7 +18,7 @@ RUN set -ex && \
   for f in /tmp/oracle-*.rpm; do alien -i $f; done && \
   apt-get purge -y --auto-remove $BUILD_PACKAGES && \
   rm -rf /tmp/*.rpm && \
-  echo /usr/lib/oracle/19.6/client64/lib > /etc/ld.so.conf.d/oracle-instantclient19.6.conf && \
+  echo /usr/lib/oracle/19.8/client64/lib > /etc/ld.so.conf.d/oracle-instantclient19.8.conf && \
   ldconfig
 
 CMD ["sh"]
