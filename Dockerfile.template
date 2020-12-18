@@ -6,9 +6,9 @@ ENV LD_LIBRARY_PATH "$ORACLE_HOME/lib"
 ENV PATH "$PATH:$ORACLE_HOME/bin"
 
 COPY \
-  vendor/%%ORACLE_VERSION%%/oracle-instantclient%%ORACLE_VERSION%%-%%PACKAGE%%-*.rpm \
-  vendor/%%ORACLE_VERSION%%/oracle-instantclient%%ORACLE_VERSION%%-devel-*.rpm \
-  vendor/%%ORACLE_VERSION%%/oracle-instantclient%%ORACLE_VERSION%%-sqlplus-*.rpm \
+  vendor/%%ORACLE_VERSION%%/oracle-instantclient-%%PACKAGE%%-*.rpm \
+  vendor/%%ORACLE_VERSION%%/oracle-instantclient-devel-*.rpm \
+  vendor/%%ORACLE_VERSION%%/oracle-instantclient-sqlplus-*.rpm \
   /tmp/
 
 RUN set -ex && \
