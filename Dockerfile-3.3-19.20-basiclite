@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM ruby:3.3-rc-slim
+FROM ruby:3.3-slim
 LABEL maintainer="tobias.michaelsen@gmail.com"
 
 ENV ORACLE_HOME "/usr/lib/oracle/19.20/client64"
@@ -8,7 +8,7 @@ ENV LD_LIBRARY_PATH "$ORACLE_HOME/lib"
 ENV PATH "$PATH:$ORACLE_HOME/bin"
 
 COPY \
-  vendor/19.20/oracle-instantclient*-basic-*.rpm \
+  vendor/19.20/oracle-instantclient*-basiclite-*.rpm \
   vendor/19.20/oracle-instantclient*-devel-*.rpm \
   vendor/19.20/oracle-instantclient*-sqlplus-*.rpm \
   /tmp/
