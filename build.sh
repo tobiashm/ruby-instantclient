@@ -11,6 +11,12 @@ while read -r ruby_version; do
     for variant in basic basiclite; do
       tag="$tag_prefix:$version-$variant"
       actual_ruby_version_tag="$tag_prefix:$actual_ruby_version-$oracle_version-$variant"
+
+      if [ $(docker image ls $actual_ruby_version_tag --format="true") ]; then
+        echo "Skipping $version-$variant because it has already been build!"
+        continue
+      fi
+
       echo "Building $version-$variant ..."
       docker buildx build --load \
         --platform linux/amd64 \
