@@ -13,7 +13,7 @@ while read -r ruby_version; do
       actual_ruby_version_tag="$tag_prefix:$actual_ruby_version-$oracle_version-$variant"
       echo "Building $version-$variant ..."
       docker buildx build --load \
-        --platform linux/amd64\
+        --platform linux/amd64 \
         -f "Dockerfile-$version-$variant" \
         -t "$tag" \
         -t "$actual_ruby_version_tag" . >> "$logfile" 2>&1
