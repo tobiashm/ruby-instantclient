@@ -16,7 +16,7 @@ COPY \
 RUN set -ex && \
   BUILD_PACKAGES='alien build-essential libaio-dev' && \
   apt-get update && \
-  apt-get install -y --no-install-recommends $BUILD_PACKAGES libaio1 && \
+  apt-get install -y --no-install-recommends $BUILD_PACKAGES libaio1t64 && \
   for f in /tmp/oracle-*.rpm; do alien -i $f; done && \
   apt-get purge -y --auto-remove $BUILD_PACKAGES && \
   rm -rf /tmp/*.rpm && \
