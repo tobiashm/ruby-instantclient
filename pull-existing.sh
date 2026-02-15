@@ -6,7 +6,7 @@ while read -r ruby_version; do
   for oracle_version in "${oracle_versions[@]#vendor/}"; do
     version="$ruby_version-$oracle_version"
     for variant in basic basiclite; do
-      docker pull "$tag_prefix:$version-$variant"
+      docker pull "$tag_prefix:$version-$variant" || true
     done
   done
 done < ruby-versions
