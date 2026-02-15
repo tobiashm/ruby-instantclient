@@ -20,4 +20,4 @@ So to build the Docker images, download the following packages from
 
 And place the `.rpm` files for each version in the respective folders.
 
-[Oracle Technology Network]: http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html
+[Oracle Technology Network]: https://www.oracle.com/database/technologies/instant-client/downloads.html
